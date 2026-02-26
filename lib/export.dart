@@ -1,6 +1,11 @@
 /*
 EXAMPLE OF IMPORTING THE EXPORT BARREL FILE
 import 'package:fsm_app/export.dart';
+
+FOR GITHUB, the 3 steps to update the REPO is
+  1) git add .
+  2) git commit
+  3) git push origin main
  */
 
 //Flutter
