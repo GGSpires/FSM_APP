@@ -1,6 +1,6 @@
 {
-    "name": "fsm_app",
-    "short_name": "fsm_app",
+    "name": "FSM APP",
+    "short_name": "FSM APP",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",
