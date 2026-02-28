@@ -5,11 +5,13 @@ import 'package:http/http.dart' as http;
 // Ensure it extends ChangeNotifier!
 class AuthProvider extends ChangeNotifier {
   UserModel? _currentUser;
-  bool _isOnline = false;
   Timer? _presenceTimer;
 
   UserModel? get currentUser => _currentUser;
   bool get isAuthenticated => _currentUser != null;
+
+  // In your AuthProvider class
+  bool _isOnline = true;
   bool get isOnline => _isOnline;
 
   // NEW: App boot state tracking
@@ -69,9 +71,9 @@ class AuthProvider extends ChangeNotifier {
       return null;
     } catch (e, stackTrace) {
       // Print the ACTUAL error to your debug console so you can read it!
-      print('LOGIN CRASH: $e'); 
+      print('LOGIN CRASH: $e');
       print(stackTrace);
-      
+
       return 'Network error. Please try again.';
     }
   }
@@ -134,14 +136,25 @@ class AuthProvider extends ChangeNotifier {
 
   // --- AUTO SYNC / PRESENCE TRACKER ---
 
+  Future<void> checkManualOnlineStatus() async {
+    try {
+      // Verifying real internet reachability
+      final result = await InternetAddress.lookup('google.com');
+      _isOnline = result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+    } catch (_) {
+      _isOnline = false;
+    }
+    notifyListeners(); // This signals ListenableBuilder to rebuild
+  }
+
   void startPresenceTracker() {
-    _checkPresence();
-    _presenceTimer = Timer.periodic(const Duration(minutes: 5), (timer) {
-      _checkPresence();
+    checkPresence();
+    _presenceTimer = Timer.periodic(const Duration(seconds: 30), (timer) {
+      checkPresence();
     });
   }
 
-  Future<void> _checkPresence() async {
+  Future<void> checkPresence() async {
     if (_currentUser == null) return;
 
     try {
@@ -179,7 +192,7 @@ class AuthProvider extends ChangeNotifier {
 
   // --- IN-MEMORY PROFILE SYNC ---
   void updateCurrentUser({
-    String? alias,  
+    String? alias,
     String? contact,
     String? email,
     String? address,

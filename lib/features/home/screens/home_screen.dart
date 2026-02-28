@@ -21,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = themeProvider.isDarkMode;
     // Listen to AuthProvider for Drawer data
     return ListenableBuilder(
       listenable: authProvider,
@@ -32,43 +31,59 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             title: Text(AppInfo.appDescription),
             actions: [
-              // Network Status Indicator
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Center(
-                  child: Icon(
-                    authProvider.isOnline ? Icons.wifi : Icons.wifi_off,
-                    color: authProvider.isOnline
-                        ? Colors.greenAccent
-                        : Colors.redAccent,
-                    size: 20,
-                  ),
-                ),
+              // Side Drawer Implementation
+
+              // 1. Network Status Indicator
+              ListenableBuilder(
+                listenable: authProvider,
+                builder: (context, child) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Center(
+                      child: Icon(
+                        authProvider.isOnline ? Icons.wifi : Icons.wifi_off,
+                        color: authProvider.isOnline
+                            ? Colors.greenAccent
+                            : Colors.redAccent,
+                        size: 20,
+                      ),
+                    ),
+                  );
+                },
               ),
 
-              // New Resync Button
+              // 2. Resync Button (Triggers manual check)
               IconButton(
                 icon: const Icon(Icons.sync),
                 tooltip: 'Sync Data',
-                onPressed: () {
+                onPressed: () async {
+                  // Manually trigger the network ping
+                  await authProvider.checkManualOnlineStatus();
+
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Syncing data from server...'),
-                    ),
+                    const SnackBar(content: Text('Syncing of Server')),
                   );
-                  // Triggers the API call inside the Job Card list
+
                   jobCardListKey.currentState?.fetchJobCards();
                 },
               ),
 
-              // Theme Toggle
-              IconButton(
-                icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-                onPressed: () => themeProvider.toggleTheme(),
+              // 3. Theme Toggle (Rebuilds instantly)
+              ListenableBuilder(
+                listenable: themeProvider,
+                builder: (context, child) {
+                  return IconButton(
+                    icon: Icon(
+                      themeProvider.isDarkMode
+                          ? Icons.light_mode
+                          : Icons.dark_mode,
+                    ),
+                    onPressed: () => themeProvider.toggleTheme(),
+                  );
+                },
               ),
             ],
           ),
-          // Side Drawer Implementation
           drawer: Drawer(
             child: Column(
               children: [

@@ -27,6 +27,7 @@ export 'package:signature/signature.dart';
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:yaml/yaml.dart';
 export 'package:date_field/date_field.dart';
+export 'package:provider/provider.dart';
 
 /*
 ==============================================================================================================================

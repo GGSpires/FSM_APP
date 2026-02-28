@@ -148,7 +148,7 @@ class _JobCardFormScreenState extends State<JobCardFormScreen> {
     final String monthStr = now.month.toString().padLeft(2, '0');
     final String yearStr = now.year.toString().substring(2);
     final String prefix = 'KHA$monthStr$yearStr';
-    
+
     int maxSeq = 0;
     for (var card in widget.existingCards) {
       if (card.worksNo.startsWith(prefix)) {
@@ -430,8 +430,8 @@ class _JobCardFormScreenState extends State<JobCardFormScreen> {
           ),
         Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-            borderRadius: BorderRadius.circular(8),
+            border: Border.all(width: 2, color: Colors.grey),
+            borderRadius: BorderRadius.circular(6),
           ),
           child: Signature(
             controller: controller,
@@ -597,13 +597,23 @@ class _JobCardFormScreenState extends State<JobCardFormScreen> {
                   _buildSectionHeader('Job Status'),
                   SwitchListTile(
                     title: const Text('Call Complete'),
-                    value: _callComplete,
-                    onChanged: (val) => setState(() => _callComplete = val),
+                    // 1. If return is needed, force the value to false (optional logic)
+                    value: _returnNeeded ? false : _callComplete,
+                    // 2. If _returnNeeded is true, onChanged is null, disabling the switch
+                    onChanged: _returnNeeded
+                        ? null
+                        : (val) => setState(() => _callComplete = val),
                   ),
                   SwitchListTile(
                     title: const Text('Return Required'),
                     value: _returnNeeded,
-                    onChanged: (val) => setState(() => _returnNeeded = val),
+                    onChanged: (val) {
+                      setState(() {
+                        _returnNeeded = val;
+                        // 3. Automatically uncheck 'Complete'  if 'Return' is toggled on
+                        if (val) _callComplete = false;
+                      });
+                    },
                   ),
 
                   // SIGNATURES

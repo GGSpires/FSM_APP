@@ -85,7 +85,11 @@ class ApiClient {
   }
 
   /// Delete a record (POST)
-  static Future<bool> deleteRecord(String tableName, String idField, String idValue) async {
+  static Future<bool> deleteRecord(
+    String tableName,
+    String idField,
+    String idValue,
+  ) async {
     try {
       final uri = Uri.parse(ApiConstants.scriptUrl);
       final payload = jsonEncode({

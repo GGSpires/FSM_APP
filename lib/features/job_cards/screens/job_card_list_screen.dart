@@ -45,9 +45,15 @@ class JobCardListScreenState extends State<JobCardListScreen> {
               fetchJobCards();
               await _jobCardsFuture;
             },
-            child: ListView.builder(
-              padding: const EdgeInsets.all(12.0),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                childAspectRatio: 6, // Adjust as needed for card height
+              ),
+              padding: const EdgeInsets.all(16.0),
+              physics: const AlwaysScrollableScrollPhysics(),
               itemCount: jobCards.length,
+              controller: ScrollController(),
               itemBuilder: (context, index) {
                 final job = jobCards[index];
                 final bool isSigned = job.clientSign.isNotEmpty;
@@ -55,9 +61,13 @@ class JobCardListScreenState extends State<JobCardListScreen> {
                 final bool needsReturn = job.returnNeeded == 'TRUE';
 
                 return Card(
-                  margin: const EdgeInsets.only(bottom: 12.0),
+                  margin: const EdgeInsets.only(
+                    left: 8.0,
+                    right: 8.0,
+                    bottom: 6.0,
+                  ),
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -204,26 +214,38 @@ class JobCardListScreenState extends State<JobCardListScreen> {
                         const SizedBox(height: 16),
 
                         Wrap(
-                          spacing: 8.0,
-                          runSpacing: 8.0,
+                          alignment: WrapAlignment.end,
+                          textDirection: TextDirection.rtl,
+                          spacing: 6.0,
+                          runSpacing: 6.0,
                           children: [
                             _buildStatusBadge(
+                              // CALL STATUS
                               label: isComplete ? 'Complete' : 'Incomplete',
-                              color: isComplete ? Colors.green : Colors.orange,
+                              color: isComplete
+                                  ? Colors.green
+                                  : const Color(0xFFFE1504),
                               icon: isComplete
                                   ? Icons.check_circle
-                                  : Icons.pending,
+                                  : Icons.cancel_outlined,
                             ),
-                            if (needsReturn)
-                              _buildStatusBadge(
-                                label: 'Return Required',
-                                color: Colors.red,
-                                icon: Icons.assignment_return,
-                              ),
                             _buildStatusBadge(
+                              // RETURN STATUS
+                              label: needsReturn
+                                  ? 'Return Needed'
+                                  : 'No Return',
+                              color: needsReturn ? Colors.red : Colors.blue,
+                              icon: needsReturn
+                                  ? Icons.assignment_return
+                                  : Icons.assignment_turned_in,
+                            ),
+                            _buildStatusBadge(
+                              // SIGNATURE STATUS,
                               label: isSigned ? 'Signed' : 'Unsigned',
-                              color: isSigned ? Colors.blue : Colors.grey,
-                              icon: isSigned ? Icons.draw : Icons.edit_off,
+                              color: isSigned ? Colors.blue : Colors.red,
+                              icon: isSigned
+                                  ? Icons.edit_note
+                                  : Icons.edit_off_outlined,
                             ),
                           ],
                         ),
@@ -236,6 +258,7 @@ class JobCardListScreenState extends State<JobCardListScreen> {
           );
         },
       ),
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.white,

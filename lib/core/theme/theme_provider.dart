@@ -26,6 +26,8 @@ class ThemeProvider extends ChangeNotifier {
         ? ThemeMode.dark
         : ThemeMode.light;
 
+      
+
     // Save the new choice to permanent storage
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('is_dark_mode', _themeMode == ThemeMode.dark);
