@@ -66,6 +66,10 @@ class JobCardListScreenState extends State<JobCardListScreen> {
                     right: 8.0,
                     bottom: 6.0,
                   ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  elevation: 3,
                   child: Padding(
                     padding: const EdgeInsets.all(6.0),
                     child: Column(

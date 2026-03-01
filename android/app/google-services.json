@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "518057945895",
+    "project_id": "fsm-application-488017",
+    "storage_bucket": "fsm-application-488017.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518057945895:android:41a4948706b075165e9702",
+        "android_client_info": {
+          "package_name": "apk.com.appfsm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518057945895-p9ka0u0j2slq6nrksmf2iao7cipkjkdp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "apk.com.appfsm",
+            "certificate_hash": "d19325de9ad86d17dfd18d306ad312e637439bad"
+          }
+        },
+        {
+          "client_id": "518057945895-cnuirs5bja90kfdu778e6s2ase7dcfoa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8tZtIolEbgzwyp1HU6Bobv4tu_aFqetY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518057945895-28pgl8pmt9rqat8icslipda2hsjrc8au.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "518057945895-jr6q8bavldvpac18i96177nsbkcf283i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fsmApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518057945895:android:a7bb90af2703fda05e9702",
+        "android_client_info": {
+          "package_name": "com.example.fsm_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518057945895-cnuirs5bja90kfdu778e6s2ase7dcfoa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8tZtIolEbgzwyp1HU6Bobv4tu_aFqetY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518057945895-28pgl8pmt9rqat8icslipda2hsjrc8au.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "518057945895-jr6q8bavldvpac18i96177nsbkcf283i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fsmApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

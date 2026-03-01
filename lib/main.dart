@@ -6,6 +6,8 @@ void main() async {
   // Required when reading SharedPreferences and PackageInfo on app boot
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   // Initialize App Info before the app starts
   await AppInfo.init();
 

@@ -12,6 +12,8 @@ FOR GITHUB, the 3 steps to update the REPO is
 export 'package:flutter/material.dart';
 export 'package:flutter/services.dart';
 export 'package:flutter/foundation.dart';
+export 'package:flutter/widgets.dart';
+export 'package:flutter/cupertino.dart' hide RefreshCallback;
 
 //Dart
 export 'dart:convert';
@@ -19,6 +21,10 @@ export 'dart:io';
 export 'dart:async';
 export 'dart:typed_data';
 export 'dart:core';
+
+//Firebase
+export 'package:firebase_core/firebase_core.dart';
+export 'package:fsm_app/firebase_options.dart';
 
 //Dependencies
 export 'package:image_picker/image_picker.dart';

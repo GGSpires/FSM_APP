@@ -1,0 +1,55 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "fsm-application-488017",
+          "appId": "1:518057945895:android:a7bb90af2703fda05e9702",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "fsm-application-488017",
+          "configurations": {
+            "android": "1:518057945895:android:a7bb90af2703fda05e9702",
+            "ios": "1:518057945895:ios:5fdd9dc6d56595c35e9702",
+            "macos": "1:518057945895:ios:5fdd9dc6d56595c35e9702",
+            "web": "1:518057945895:web:00a951d5582e43b55e9702",
+            "windows": "1:518057945895:web:b5716d5e0b19061a5e9702"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "africa-south1",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "auth": {
+    "providers": {
+      "anonymous": true,
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "My App",
+        "supportEmail": "support@undefined.firebaseapp.com"
+      }
+    }
+  }
+}

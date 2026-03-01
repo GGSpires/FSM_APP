@@ -1,5 +1,6 @@
 import 'package:fsm_app/export.dart';
 
+
 class AppTheme {
   // Primary colors suitable for a Fire & Security app
   static const Color primaryColor = Color(0xFFD32F2F); // Safety Red
@@ -10,9 +11,9 @@ class AppTheme {
       brightness: Brightness.light,
       primaryColor: primaryColor,
       scaffoldBackgroundColor: Colors.grey[50],
-      appBarTheme: const AppBarTheme(
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
+      appBarTheme: AppBarTheme(
+        backgroundColor: primaryColor.withOpacity(0.7),
+        foregroundColor: const Color(0xFF000000),
         elevation: 0,
         centerTitle: true,
       ),
@@ -62,9 +63,9 @@ class AppTheme {
     return ThemeData(
       brightness: Brightness.dark,
       primaryColor: primaryColor,
-      scaffoldBackgroundColor: const Color(0xFF121212),
+      scaffoldBackgroundColor: const Color(0xFF171717),
       appBarTheme: const AppBarTheme(
-        backgroundColor: Color(0xFF101010),
+        backgroundColor: Color(0xFF0D0D0D),
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
